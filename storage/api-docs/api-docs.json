@@ -1,0 +1,213 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "OpenWeatherMap API Documentation",
+        "version": "1.0"
+    },
+    "servers": [
+        {
+            "url": "http://localhost:8000/api",
+            "description": "OpenWeatherMap API Server"
+        }
+    ],
+    "paths": {
+        "/v1/openweathermap/test-api-key": {
+            "get": {
+                "tags": [
+                    "OpenWeatherMap"
+                ],
+                "summary": "Test API Key",
+                "operationId": "23dc333cb9428421c84dd84225c490da",
+                "responses": {
+                    "200": {
+                        "description": "API key is valid",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "status": "success",
+                                    "message": "API key is valid",
+                                    "data": null
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Invalid API key",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "status": "error",
+                                    "message": "Invalid API key"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid API key. Requires to provide a valid API key in the request header.",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "status": "error",
+                                    "message": "Invalid API key"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": []
+                    }
+                ]
+            }
+        },
+        "/v1/openweathermap/weather/{city}": {
+            "get": {
+                "tags": [
+                    "OpenWeatherMap"
+                ],
+                "summary": "Get Current Weather From External API",
+                "operationId": "5821de340f32a0fa4919bf46e55a7f32",
+                "parameters": [
+                    {
+                        "name": "city",
+                        "in": "path",
+                        "description": "City name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Current weather data",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "status": "success",
+                                    "message": "Weather data fetched successfully",
+                                    "data": {
+                                        "city": "",
+                                        "temperature": 0,
+                                        "description": "",
+                                        "timestamp": "",
+                                        "source": "external"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Unable to fetch weather data",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "status": "error",
+                                    "message": "Unable to fetch weather data",
+                                    "data": null
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Invalid API key. Requires to provide a valid API key in the request header.",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "status": "error",
+                                    "message": "Invalid API key"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": []
+                    }
+                ]
+            }
+        },
+        "/v1/openweathermap/weather/{city}/cached": {
+            "get": {
+                "tags": [
+                    "OpenWeatherMap"
+                ],
+                "summary": "Get Current Weather From Cache",
+                "operationId": "b72978a71518e51e9385c6d96c9081e2",
+                "parameters": [
+                    {
+                        "name": "city",
+                        "in": "path",
+                        "description": "City name",
+                        "required": true,
+                        "schema": {
+                            "type": "string"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Get Current Weather From Cache",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "status": "success",
+                                    "message": "Weather data fetched from cache",
+                                    "data": {
+                                        "city": "",
+                                        "temperature": 0,
+                                        "description": "",
+                                        "timestamp": "",
+                                        "source": "cache"
+                                    }
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "No cached weather data available",
+                        "content": {
+                            "application/json": {
+                                "schema": {},
+                                "example": {
+                                    "status": "error",
+                                    "message": "No cached weather data available",
+                                    "data": null
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "apiKey": []
+                    }
+                ]
+            }
+        }
+    },
+    "components": {
+        "securitySchemes": {
+            "apiKey": {
+                "type": "apiKey",
+                "description": "Use API Key",
+                "name": "X-API-KEY",
+                "in": "header"
+            }
+        }
+    },
+    "tags": [
+        {
+            "name": "OpenWeatherMap"
+        }
+    ]
+}

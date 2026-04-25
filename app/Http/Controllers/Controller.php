@@ -2,6 +2,20 @@
 
 namespace App\Http\Controllers;
 
+use OpenApi\Attributes as OA;
+
+#[OA\Info(title: "OpenWeatherMap API Documentation", version: "1.0")]
+#[OA\Server(url: "http://localhost:8000/api", description: "Localhost")]
+#[OA\SecurityScheme(
+    securityScheme: "apiKey",
+    type: "apiKey",
+    description: "Use API Key",
+    name: "X-API-KEY",
+    in: "header"
+)]
+#[OA\Tag(name: "OpenWeatherMap")]
+
+
 abstract class Controller
 {
     public function success($data, $message = 'Success', $statusCode = 200)

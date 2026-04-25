@@ -1,9 +1,8 @@
 # Open Weather Map
 
 ## Requirements
-- PHP ^8.3 (as per project composer.json)
-- Composer
-- Laravel (project is already scaffolded)
+- PHP ^8.3
+- MySQL ^8.0.30
 
 
 ## 📦 Project Setup
@@ -48,19 +47,10 @@ See tests at OpenWeatherMapTest.php
 php artisan serve
 ```
 
-### 7. Test your Open Weather Map API key
-Use curl to call the endpoint:
-```bash
-curl -H "X-API-KEY: your_api_key_here" \
-     http://localhost:8000/api/test-api-key
-```
+### 7. Open Swagger
+Open your browser and go to `http://localhost:8000/api/documentation`
 
-### 8. Test the weather API
-Use curl to call the endpoint, replacing {city} with your target city:
-```bash
-curl -H "X-API-KEY: your_api_key_here" \
-     http://localhost:8000/api/weather/{city}
-```
+
 ### 🗂 Notes
 
 All endpoints expect the API token header used by the project middleware (see routes/api.php).
